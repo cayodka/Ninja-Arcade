@@ -76,12 +76,10 @@
 
         music.loop = true;
 
-        // Inicia a música no primeiro clique do usuário
         document.addEventListener("click", () => {
             if (music.paused) music.play().catch(() => { });
         }, { once: true });
 
-        // Ao clicar no botão, altera o fundo e redireciona
         document.querySelector("button").addEventListener("click", () => {
             clickSound.play();
             document.body.style.background = "url(/assets/img/city.gif) center/cover no-repeat";

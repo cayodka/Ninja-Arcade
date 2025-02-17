@@ -166,13 +166,3 @@ body {
   background-color: red;
   cursor: pointer;
 }
-
-#imgresultado{
-  height: 5rem;
-  width: 15rem;
-  position: absolute;
-  top: 5rem;
-  left: 40%;
-  z-index: 999;
-
-}
