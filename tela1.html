@@ -77,8 +77,9 @@
         music.loop = true;
 
         document.addEventListener("click", () => {
-            if (music.paused) music.play().catch(() => { });
-        }, { once: true });
+            if (music.paused) music.play();
+        });
+
 
         document.querySelector("button").addEventListener("click", () => {
             clickSound.play();
