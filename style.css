@@ -11,12 +11,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
+  overflow: hidden;
 }
 
 #chão{
   width: 100%;
-  height: 4.2rem;
-  top: -10rem;
+  height: 10rem;
+  top: -9rem;
   position: relative;
   background-image: url(/assets/img/estrada.jpg);
 }
