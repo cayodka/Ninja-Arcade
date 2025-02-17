@@ -8,7 +8,7 @@ const aleatoriedade = (a, b) => Math.floor(Math.random() * (b - a + 1)) + a;
 
 const escolherJogador = () => Math.random() < 0.5 ? 1 : 2;
 
-const atualizarBarraDeVida = (player, health) => {
+const atualizaVida = (player, health) => {
     const barra = document.getElementById(player === 1 ? "vida1" : "vida2");
     if (barra) {
         barra.style.width = `${health}%`; 
@@ -23,12 +23,12 @@ const aplicarDanoComNumero = () => {
 
     if (jogadorEscolhido === 1) {
         healthPlayer1 = Math.max(0, healthPlayer1 - dano);
-        atualizarBarraDeVida(1, healthPlayer1);
+        atualizaVida(1, healthPlayer1);
         animarJogador("p1");
         tocarSom(1);
     } else {
         healthPlayer2 = Math.max(0, healthPlayer2 - dano);
-        atualizarBarraDeVida(2, healthPlayer2);
+        atualizaVida(2, healthPlayer2);
         animarJogador("p2");
         tocarSom(2); 
     }
@@ -58,8 +58,8 @@ const verificarVitoria = () => {
 const reiniciarPartida = () => {
     healthPlayer1 = 100;
     healthPlayer2 = 100;
-    atualizarBarraDeVida(1, healthPlayer1);
-    atualizarBarraDeVida(2, healthPlayer2);
+    atualizaVida(1, healthPlayer1);
+    atualizaVida(2, healthPlayer2);
 
     document.getElementById("inputdado").value = "";
     clearInterval(intervalo);
@@ -88,7 +88,7 @@ let bgPlaying = false;
 const music = new Audio("/assets/audio/bgm.mp3"); 
 const clickSound = new Audio("/assets/audio/click.mp3");
 
-const controlarMusica = () => {
+const Musica = () => {
     if (bgPlaying) {
         music.pause(); 
         bgPlaying = false; 
@@ -124,7 +124,7 @@ document.getElementById("start").addEventListener("click", () => {
             aplicarDanoComNumero(); 
         }, 2000);
 
-        controlarMusica(); 
+        Musica(); 
         clickSound.play();
     }
 });
