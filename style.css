@@ -1,169 +1,244 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "VT323", serif;
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "VT323", serif;
+  }
 
-body {
-  background-image: url('/assets/img/bg.gif');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-  overflow: hidden;
-}
+  #telaum{
+    background: url(/assets/img/Animated\ GIF.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: transform 1.5s ease-in-out;
+    z-index: 999;
+    position: fixed;
+    border-radius: 25px;
+    top: 0;
+    left: 0;
+  }
 
-#chão{
-  width: 100%;
-  height: 10rem;
-  top: -9rem;
-  position: relative;
-  background-image: url(/assets/img/estrada.jpg);
-}
-#barrasdevida {
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-  position: relative;
-  top: 1rem;
-}
+  #papelparede{
+    background-image:url(/assets/img/city.gif);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 9999;
+    position: absolute;
+    visibility: hidden;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+  }
 
-#barravida1, #barravida2 {
-  height: 2rem;
-  width: 20rem;
-  background-color: black;
-  border: 5px solid black;
-  transform: skew(20deg);
-  overflow: hidden;
-  position: relative;
-}
+  #explosão{
+    z-index: 99;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    visibility: hidden;
+  }
+  .buttonall {
+    height: 8rem;
+    width: 8rem;
+    background: url(/assets/img/buttonstart.png) center/cover no-repeat;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
 
-#barravida2{
+  .buttonall:hover {
+    filter: drop-shadow(10px 20px 10px black);
+    transform: scale(1.1);
+  }
+
+  #logo {
+    animation: shake 3s infinite ease;
+    z-index: 999;
+  }
+
+  #logo:hover{
+    filter: drop-shadow(1px 20px 50px purple);
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+        transform: translate(0);
+    }
+
+    25% {
+        transform: translateX(-5px);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+  }
+
+  body {
+    background-image: url('/assets/img/bg2.gif');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  chão{
+    width: 100%;
+    height: 100rem;
+    top: -9rem;
+    position: relative;
+    background-image: url(/assets/img/estrada.jpg);
+  }
+
+  #barrasdevida {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    position: relative;
+    top: 1rem;
+  }
+
+  #barravida1, #barravida2 {
+    height: 2rem;
+    width: 20rem;
+    background-color: black;
+    border: 5px solid black;
+    transform: skew(20deg);
+    overflow: hidden;
+    position: relative;
+  }
+
+  #barravida2 {
     transform: scaleX(-1);
     transition: width 0.5s ease-in-out;
-}
-#barravida1{
-  transition: width 0.5s ease-in;
+  }
+
+  #barravida1 {
+    transition: width 0.5s ease-in;
+  }
+
+  .vida {
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    transition: width 0.5s ease-in-out;
+  }
+
+  @keyframes shakeAndRotate {
+    0% { transform: translateX(10px) rotate(0deg); }
+    25% { transform: translateX(-10px) rotate(10deg); }
+    50% { transform: translateX(10px) rotate(-10deg); }
+    75% { transform: translateX(-10px) rotate(10deg); }
+    100% { transform: translateX(0px) rotate(0deg); }
 }
 
-.vida {
-  height: 100%;
-  width: 100%;
-  background-color: red;
-  transition: width 0.5s ease-in-out;
-  visi
+.shakeAndRotate {
+    animation: shakeAndRotate 0.5s ease-in-out;
 }
 
-.damage-animation {
-  animation: shake 0.3s ease-in-out, flash 0.5s ease-in-out;
-}
+  @keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
 
-@keyframes shake {
-  0% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  50% { transform: translateX(5px); }
-  75% { transform: translateX(-5px); }
-  100% { transform: translateX(0); }
-}
+  #trovão {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: 0;
+    pointer-events: none;
+    animation: trovão 7s infinite;
+    z-index: 999;
+  }
 
-@keyframes flash {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
+  @keyframes trovão {
+    0%, 100% { opacity: 0; }
+    2%, 42% { opacity: 0.7; }
+    4%, 44% { opacity: 0; }
+    40% { opacity: 0; }
+  }
 
-#trovão {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: white;
-  opacity: 0;
-  pointer-events: none;
-  animation: trovão 7s infinite;
-  z-index: 999;
-}
+  #personagens {
+    width: 100%;
+    position: relative;
+    top: 55%;
+    z-index: 2;
+    display: flex;
+    justify-content: space-around;
+  
+  }
 
-@keyframes trovão {
-  0%, 100% { opacity: 0; }
-  2%, 42% { opacity: 0.7; }
-  4%, 44% { opacity: 0; }
-  40% { opacity: 0; }
-}
+  #personagens div {
+    height: 14rem;
+    width: 8rem;
+    cursor: pointer;
+  }
 
-#personagens {
-  width: 100%;
-  position: relative;
-  top: 55%;
-  z-index: 2;
-  display: flex;
-  justify-content: space-around;
-}
+  #p1 {
+    background-image: url('/assets/img/p1.gif');
+    background-position: center;
+    background-size: cover;
+  }
 
-#personagens div {
-  height: 14rem;
-  width: 8rem;
-  cursor: pointer;
-}
+  #p2 {
+    background-image: url('/assets/img/p2.gif');
+    background-position: center;
+    background-size: cover;
+    transform: scaleX(-1);
+  }
 
-#p1 {
-  background-image: url('/assets/img/p1.gif');
-  background-position: center;
-  background-size: cover;
-}
+  #containerdado {
+    height: 30rem;
+    width: 20rem;
+    position: relative;
+    left: 37%;
+    top: -13rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    z-index: 3;
+    gap: 15px;
+  }
 
-#p2 {
-  background-image: url('/assets/img/p2.gif');
-  background-position: center;
-  background-size: cover;
-  transform: scaleX(-1);
-}
+  #dado {
+    height: 20rem;
+    width: 20rem;
+    position: relative;
+    background-image: url('/assets/img/dado.gif');
+    background-position: center;
+    background-size: cover;
+    visibility: hidden;
+  }
 
-#containerdado {
-  height: 30rem;
-  width: 20rem;
-  position: relative;
-  left: 37%;
-  top: -13rem;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  z-index: 3;
-  gap: 15px;
-}
-
-#dado {
-  height: 20rem;
-  width: 20rem;
-  position: relative;
-  background-image: url('/assets/img/dado.gif');
-  background-position: center;
-  background-size: cover;
-  visibility: hidden;
-}
-
-#inputdado {
-  height: 6rem;
-  width: 8rem;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-image: url('/assets/img/pergaminho.png');
-  background-position: center;
-  background-size: cover;
-  border: none;
-  background-color: transparent;
-  font-size: 45px;
-  visibility: hidden;
-}
-
-#start {
-  height: 6rem;
-  width: 10rem;
-  font-size: 40px;
-  border-radius: 10px;
-  background-color: red;
-  cursor: pointer;
-}
+  #inputdado {
+    height: 6rem;
+    width: 8rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/assets/img/pergaminho.png');
+    background-position: center;
+    background-size: cover;
+    border: none;
+    background-color: transparent;
+    font-size: 45px;
+    visibility: hidden;
+  }
